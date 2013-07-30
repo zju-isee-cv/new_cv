@@ -1,5 +1,6 @@
 This program is based on the Toolbox written by Christopher Mei and the files related to calibration with C.Mei model stay under his own right, the rest of the program is under the GPL license version 2, please read GPL.txt for more information.
 
+**more details from [here](https://github.com/zju-isee-cv/new_cv/blob/master/document/document_v2.1.pdf)**
 
 ## 1.Introduction of the Toolbox
 
@@ -13,11 +14,11 @@ The Toolbox permits easy and practical calibration of the omnidirectional camera
 The calibration performed by the Non-central Catadioptric Camera Toolbox can lead to an equally simple calibration for both central and non-central systems. In fact, the Toolbox is able to provide an optimal solution even when the misalignment between the reflective and the camera is severe.
 
 The calibration will estimate:
-1 the extrinsic parameters corresponding to the rotation (quaternion : Qw) and translation (Tw) between the grid and the mirror
-2 the parameters describing the mirror shape (xi)
-3 the distortion induced by the lens (eg. telecentric) (kc)
-4 the intrinsic parameters of the generalised camera : skew (alpha_c), generalised focal lengths (gamma1,gamma2) and principal points (cc)
-5 the vector (-xi1,-xi2,-xi3): denote the position of the original projection center.
+1. the extrinsic parameters corresponding to the rotation (quaternion : Qw) and translation (Tw) between the grid and the mirror
+2. the parameters describing the mirror shape (xi)
+3. the distortion induced by the lens (eg. telecentric) (kc)
+4. the intrinsic parameters of the generalised camera : skew (alpha_c), generalised focal lengths (gamma1,gamma2) and principal points (cc)
+5. the vector (-xi1,-xi2,-xi3): denote the position of the original projection center.
 
 ## 2.Software requirements
 The Non-central Catadioptric Camera Toolbox for Matlab has been successfully tested under Matlab, version 2009b and 2010b for Windows.
@@ -69,19 +70,19 @@ Pressing on `Calibration of two methods` will start the minimization with two mo
 To further verify the performance of our model quantitatively, we employed a trithedral object composed of three orthogonal planes and the angles between the planes are calculated from the calibrated extrinsic parameters RwQw.
 
 ## 15.Other buttons
-1 "Calib new RT"computes the extrinsic parameters in the case of known intrinsic parameters.
-2 "Show calib results" show the calibration values and errors
-3 "Save" saves the extrinsic and intrinsic parameters, the grid points, ...
-4 "Load" loads the values obtained during the calibration
-5 "Exit" quits the program
+1. "Calib new RT"computes the extrinsic parameters in the case of known intrinsic parameters.
+2. "Show calib results" show the calibration values and errors
+3. "Save" saves the extrinsic and intrinsic parameters, the grid points, ...
+4. "Load" loads the values obtained during the calibration
+5. "Exit" quits the program
 
 
 *References*
 
-1 Zhiyu Xiang, Xing Dai and Xiaojin Gong, Noncentral catadioptric camera calibration using a generalized unified model, Optics Letters, Vol.38 (9), 1367-1369, 2013
-2 Geyer, Christopher, and Kostas Daniilidis. "A unifying theory for central panoramic systems and practical implications." Computer Vision—ECCV 2000. Springer Berlin Heidelberg, 2000. 445-461.
-3 Mei, Christopher, and Patrick Rives. "Single view point omnidirectional camera calibration from planar grids." Robotics and Automation, 2007 IEEE International Conference on. IEEE, 2007.
-4 Grossberg, Michael D., and Shree K. Nayar. "The raxel imaging model and ray-based calibration." International Journal of Computer Vision 61.2 (2005): 119-137.
-5 Gonçalves, Nuno, and Helder Araújo. "Estimating parameters of non-central catadioptric systems using bundle adjustment." Computer Vision and Image Understanding 113.1 (2009): 11-28.
-6 Xiang, Zhiyu, Bo Sun, and Xing Dai. "The camera itself as a calibration pattern: A novel self-calibration method for non-central catadioptric cameras." Sensors 12.6 (2012): 7299-7317.
-7 OmnidirectionalCalibration Toolbox,http://homepages.laas.fr/~cmei/index.php/Toolbox
+1. Zhiyu Xiang, Xing Dai and Xiaojin Gong, Noncentral catadioptric camera calibration using a generalized unified model, Optics Letters, Vol.38 (9), 1367-1369, 2013
+2. Geyer, Christopher, and Kostas Daniilidis. "A unifying theory for central panoramic systems and practical implications." Computer Vision—ECCV 2000. Springer Berlin Heidelberg, 2000. 445-461.
+3. Mei, Christopher, and Patrick Rives. "Single view point omnidirectional camera calibration from planar grids." Robotics and Automation, 2007 IEEE International Conference on. IEEE, 2007.
+4. Grossberg, Michael D., and Shree K. Nayar. "The raxel imaging model and ray-based calibration." International Journal of Computer Vision 61.2 (2005): 119-137.
+5. Gonçalves, Nuno, and Helder Araújo. "Estimating parameters of non-central catadioptric systems using bundle adjustment." Computer Vision and Image Understanding 113.1 (2009): 11-28.
+6. Xiang, Zhiyu, Bo Sun, and Xing Dai. "The camera itself as a calibration pattern: A novel self-calibration method for non-central catadioptric cameras." Sensors 12.6 (2012): 7299-7317.
+7. OmnidirectionalCalibration Toolbox,http://homepages.laas.fr/~cmei/index.php/Toolbox
