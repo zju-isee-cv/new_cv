@@ -1,5 +1,2 @@
-Page of the Omnidirectional Calibration Toolbox :
-http://www-sop.inria.fr/icare/personnel/Christopher.Mei/index.html
-
-This program is based on the Toolbox written by Jean-Yves Bouguet and the files related to perspective calibration stay under his own right, the rest of the program is under the GPL license version 2, please read GPL.txt for more information.
+This program is based on the Toolbox written by Christopher Mei and the files related to calibration with C.Mei model stay under his own right, the rest of the program is under the GPL license version 2, please read GPL.txt for more information.
 
