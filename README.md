@@ -14,6 +14,7 @@ The Toolbox permits easy and practical calibration of the omnidirectional camera
 The calibration performed by the Non-central Catadioptric Camera Toolbox can lead to an equally simple calibration for both central and non-central systems. In fact, the Toolbox is able to provide an optimal solution even when the misalignment between the reflective and the camera is severe.
 
 The calibration will estimate:
+
 1. the extrinsic parameters corresponding to the rotation (quaternion : Qw) and translation (Tw) between the grid and the mirror
 2. the parameters describing the mirror shape (xi)
 3. the distortion induced by the lens (eg. telecentric) (kc)
@@ -70,6 +71,7 @@ Pressing on `Calibration of two methods` will start the minimization with two mo
 To further verify the performance of our model quantitatively, we employed a trithedral object composed of three orthogonal planes and the angles between the planes are calculated from the calibrated extrinsic parameters RwQw.
 
 ## 15.Other buttons
+
 1. "Calib new RT"computes the extrinsic parameters in the case of known intrinsic parameters.
 2. "Show calib results" show the calibration values and errors
 3. "Save" saves the extrinsic and intrinsic parameters, the grid points, ...
