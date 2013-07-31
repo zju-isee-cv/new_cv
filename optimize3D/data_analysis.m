@@ -31,28 +31,28 @@ paramEst3D_err_std = 0;
 fprintf(1,'paramEst\nparamEst3D\n');
 
 
-[angle angle_error] = angle_error_cal(paramEst, ima1, ima2);
+[angle angle_error] = angle_error_cal(paramEst, ima1, ima2, 'paramEst');
 paramEst_err = paramEst_err + abs(angle - 90);
 paramEst_err_std = paramEst_err_std + angle_error;
 
-[angle angle_error] = angle_error_cal(paramEst3D, ima1, ima2);
+[angle angle_error] = angle_error_cal(paramEst3D, ima1, ima2, 'paramEst3D');
 paramEst3D_err = paramEst3D_err + abs(angle - 90);
 paramEst3D_err_std = paramEst3D_err_std + angle_error;
 fprintf(1,'\n');
 
 
-[angle angle_error] = angle_error_cal(paramEst, ima2, ima3);
+[angle angle_error] = angle_error_cal(paramEst, ima2, ima3, 'paramEst');
 paramEst_err = paramEst_err + abs(angle - 90);
 paramEst_err_std = paramEst_err_std + angle_error;
-[angle angle_error] = angle_error_cal(paramEst3D, ima2, ima3);
+[angle angle_error] = angle_error_cal(paramEst3D, ima2, ima3, 'paramEst3D');
 paramEst3D_err = paramEst3D_err + abs(angle - 90);
 paramEst3D_err_std = paramEst3D_err_std + angle_error;
 fprintf(1,'\n');
 
-[angle angle_error] = angle_error_cal(paramEst, ima3, ima1);
+[angle angle_error] = angle_error_cal(paramEst, ima3, ima1, 'paramEst');
 paramEst_err = paramEst_err + abs(angle - 90);
 paramEst_err_std = paramEst_err_std + angle_error;
-[angle angle_error] = angle_error_cal(paramEst3D, ima3, ima1);
+[angle angle_error] = angle_error_cal(paramEst3D, ima3, ima1, 'paramEst3D');
 paramEst3D_err = paramEst3D_err + abs(angle - 90);
 paramEst3D_err_std = paramEst3D_err_std + angle_error;
 fprintf(1,'\n');
