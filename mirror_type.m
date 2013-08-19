@@ -28,7 +28,7 @@
 %     xi : initial value given to xi
 %     dioptric : boolean indicating if we are using a mirror
 %
-function paramEst = mirror_values()
+function paramEst3D = mirror_values()
 %%%%%%%%%%%% Obtain mirror_type %%%%%%%%%%%%%
 camera_type = 0;
 
@@ -69,7 +69,10 @@ switch camera_type
   dioptric = 1;
 end
 
-paramEst.est_xi = est_xi;
-paramEst.xi = 1;
+paramEst3D.est_xi = est_xi;
+paramEst3D.xi1 = 0;
+paramEst3D.xi2 = 0;
+paramEst3D.xi3 = 1;
 
-paramEst.dioptric = dioptric;
+paramEst3D.dioptric = dioptric;
+

@@ -8,7 +8,7 @@
 %                      Zhejiang University              %
 %                                                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [angle angle_error] = angle_error_cal(paramEst, ima_num1, ima_num2, modelname)
+function [angle angle_error] = angle_error_cal(paramEst, ima_num1, ima_num2)
 ima = size(paramEst.Qw,2);
 Q1 = paramEst.Qw{ima_num1};
 Qn1 = Q1 / norm(Q1);
@@ -78,4 +78,4 @@ dxdo = dxdQn1Qn2 *dQn1Qn2do;
  JJ = dxdo'*dxdo;
  angle_error= 3*sqrt(full(diag(pinv(JJ))))*(paramEst.sigma_x);
  
- fprintf(1, '%s angleQ%dQ%d: %f +- %f\n', modelname, ima_num1, ima_num2, angle, angle_error);
+ fprintf(1, 'angleQ%dQ%d: %f +- %f\n', ima_num1, ima_num2, angle, angle_error);

@@ -12,7 +12,7 @@
 % Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 %
 
-function save_omni_calib(minInfo,borderInfo,images,gen_KK_est,gridInfo,paramEst, paramEst3D)
+function save_omni_calib(minInfo,borderInfo,images,gen_KK_est,gridInfo,paramEst3D)
 
 save paramEst3D.mat paramEst3D;
 save gridInfo.mat gridInfo;
@@ -36,7 +36,7 @@ if cont
         
   string_save = ['save ' save_name ...
 		 ' minInfo borderInfo images_without_I gen_KK_est' ...
-		 ' gridInfo paramEst'];
+		 ' gridInfo paramEst3D'];
       
   eval(string_save);
   %save_omni_calib_ascii;
@@ -52,13 +52,16 @@ cont = findSaveName(save_name);
 fprintf(1,['\nSaving only the parameters under ' save_name '.mat ']);
 
 if cont 
-  xi = paramEst.xi;
-  kc = paramEst.kc;
-  gammac = paramEst.gammac;
-  cc = paramEst.cc;
-  alpha_c = paramEst.alpha_c;
+  xi1 = paramEst3D.xi1;
+  xi2 = paramEst3D.xi2;
+  xi3 = paramEst3D.xi3;
+  kc = paramEst3D.kc;
+  gammac = paramEst3D.gammac;
+  cc = paramEst3D.cc;
+  alpha_c = paramEst3D.alpha_c;
 
-  if ~paramEst.dioptric
+ if ~paramEst3D.dioptric
+
     if ~isfield(borderInfo,'roi_min')
       roi_min = [borderInfo.center_estimate(1)-borderInfo.radius_estimate;borderInfo.center_estimate(2)+borderInfo.radius_estimate];
       roi_max = [borderInfo.center_estimate(1)+borderInfo.radius_estimate;borderInfo.center_estimate(2)-borderInfo.radius_estimate];
@@ -71,9 +74,9 @@ if cont
     roi_max = [images.nx;images.ny];
   end
 
-  eval(['save ' save_name ' xi kc gammac cc alpha_c roi_min roi_max']);
+  eval(['save ' save_name ' xi1 xi2 xi3 kc gammac cc alpha_c roi_min roi_max']);
 
-  write_params_to_file([save_name '.bin'],xi, kc, gammac, cc, alpha_c, roi_min, roi_max);
+  write_params_to_file([save_name '.bin'],xi1,xi2,xi3, kc, gammac, cc, alpha_c, roi_min, roi_max);
 
   fprintf(1,'done\n');
 end

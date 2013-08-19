@@ -8,7 +8,7 @@
 %                      Zhejiang University              %
 %                                                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [gridInfo, paramEst, paramEst3D] = calib_new_RT(images, gen_KK_est, gridInfo, paramEst, paramEst3D)
+function [gridInfo,  paramEst3D] = calib_new_RT(images, gen_KK_est, gridInfo, paramEst3D)
 n_ima = images.n_ima;
 
 fprintf(1,'\nThis function calibrate the other images\n');
@@ -28,26 +28,26 @@ fprintf('\n');
 
 for i = 1: length(ima_proc)
     ima_number = ima_proc(i)
-    V = [paramEst.Qw{ima_number}; paramEst.Tw{ima_number};paramEst.xi;paramEst.kc;paramEst.alpha_c;
-     paramEst.gammac;paramEst.cc]; 
+    V = [paramEst3D.Qw{ima_number}; paramEst3D.Tw{ima_number};paramEst3D.xi3;paramEst3D.kc;paramEst3D.alpha_c;
+     paramEst3D.gammac;paramEst3D.cc]; 
     [Q,T] =  fastOmniPnP(gridInfo.X{ima_number}, gridInfo.x{ima_number}, V);
-    paramEst.Qw{ima_number} = Q;
-    paramEst.Tw{ima_number} = T;
+    paramEst3D.Qw{ima_number} = Q;
+    paramEst3D.Tw{ima_number} = T;
 end
 
-param = [paramEst.xi;paramEst.kc;paramEst.alpha_c;paramEst.gammac;paramEst.cc;zeros(7*n_ima,1)];
+param = [paramEst3D.xi3;paramEst3D.kc;paramEst3D.alpha_c;paramEst3D.gammac;paramEst3D.cc;zeros(7*n_ima,1)];
 % ind_active = [1:n_ima];
 ind_active = ima_proc;
 for kk = ind_active
-  if isempty(paramEst.Qw{kk})
+  if isempty(paramEst3D.Qw{kk})
     fprintf(1,'Extrinsic parameters at frame %d do not exist\n',kk);
     return
   end
-  param(11+7*(kk-1) + 1:11+7*(kk-1) + 7) = [paramEst.Qw{kk};paramEst.Tw{kk}];
+  param(11+7*(kk-1) + 1:11+7*(kk-1) + 7) = [paramEst3D.Qw{kk};paramEst3D.Tw{kk}];
 end
 
 [sfx,ex3,JJ3, Jout] = buildJacobian(n_ima, gridInfo, param, ind_active);
-paramEst.J = Jout;
+paramEst3D.J = Jout;
 
 options = optimset('Jacobian','off',...
                     'Algorithm',{'levenberg-marquardt',.005}',...

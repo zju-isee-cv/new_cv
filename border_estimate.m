@@ -33,7 +33,7 @@
 %     radius_estimate : estimate of the radius of the mirror border
 %                       in the image
 %
-function [gen_KK_est, borderInfo] = border_estimate(images,paramEst)
+function [gen_KK_est, borderInfo] = border_estimate(images,paramEst3D)
 
 ind_active = find(images.active_images);
 
@@ -42,7 +42,7 @@ if isempty(ind_active)
   return
 end
 
-if paramEst.dioptric
+if paramEst3D.dioptric
   fprintf(1,['\nAssuming principal point is in the center of the' ...
 	     ' image for initialisation.\n']);
 
@@ -124,7 +124,7 @@ gen_KK_est = [gamma 0 center_estimate(1);...
 
 borderInfo.center_estimate = center_estimate;
 
-if ~paramEst.dioptric
+if ~paramEst3D.dioptric
   borderInfo.radius_estimate = radius_estimate;
 end
 

@@ -41,6 +41,7 @@ for points_num =  1: 3
 end
 
 set(2,'color',[1 1 1]);
+
 %%% Added for omni to make it possible to zoom before inputting points
 input('Please press enter after zooming...');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

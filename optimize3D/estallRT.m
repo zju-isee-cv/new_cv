@@ -20,4 +20,3 @@ for i = 1: size(gridInfo.x,2)
 %     R
  end
  
- 
