@@ -1,36 +1,4 @@
-% This program is free software; you can redistribute it and/or
-% modify it under the terms of the GNU General Public License
-% as published by the Free Software Foundation, version 2.
-%
-% This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-% GNU General Public License for more details.
-%
-% You should have received a copy of the GNU General Public License
-% along with this program; if not, write to the Free Software Foundation,
-% Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                            %
-%      Draws extracted and reprojected       %
-%      points on the calibration images      %
-%                                            %
-%   Created : 2005 (mod 11/03/06)            %
-%    Author : Christopher Mei                %
-%                                            %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Input : 
-%   see "click_calib.m"
-%
-% Output :
-%
-
-
-function drawImageWithPoints(images,gen_KK_est,gridInfo,paramEst)
-
+function drawImageWithPoints(images,gen_KK_est,gridInfo,paramEst3D)
 if ~isfield(images,'I')
   disp('Cannot draw corners without images');
   return
@@ -45,14 +13,16 @@ if isempty(ima_show)
   ima_show = ind_active;
 end
 
-if ~isfield(paramEst,'gammac')
-  XI=[paramEst.xi;zeros(5,1);0;...
+
+if ~isfield(paramEst3D,'gammac')
+  XI=[paramEst3D.Q;paramEst3D.xi1;paramEst3D.xi2;paramEst3D.xi3;... %%%%%%%%dx
+      zeros(5,1);0;...
       gen_KK_est(1,1);gen_KK_est(2,2); ...
       gen_KK_est(1,3);gen_KK_est(2,3)];
 else
-  XI=[paramEst.xi;paramEst.kc;paramEst.alpha_c;...
-      paramEst.gammac(1);paramEst.gammac(2);...
-      paramEst.cc(1);paramEst.cc(2)];
+  XI=[paramEst3D.Q;paramEst3D.xi1;paramEst3D.xi2;paramEst3D.xi3;...%%%%%%%%%%%dx
+      paramEst3D.kc;paramEst3D.alpha_c;...
+      paramEst3D.gammac;paramEst3D.cc];
 end
 
 for i=1:length(ima_show)
@@ -80,12 +50,12 @@ for i=1:length(ima_show)
     plot(gridInfo.real_x{index}(1,:),gridInfo.real_x{index}(2,:),'g+');
   end
   
-  V = [paramEst.Qw{index};paramEst.Tw{index};XI];
+  V = [paramEst3D.Qw{index};paramEst3D.Tw{index};XI];
 
-  [XX,dXXdV] = omniCamProjection(gridInfo.X{index}, V);
+  XX = omniCamProjection3D(gridInfo.X{index}, V);
 
   plot(XX(1,:),XX(2,:),'yx');
 end
 
-[err_mean_abs,err_std_abs,err_std] = comp_omni_error(images,gen_KK_est,paramEst,gridInfo);
-err_std_abs
+[err_mean_abs3D,err_std_abs3D,err_std3D] = comp_omni_error3D(images,gen_KK_est,paramEst3D,gridInfo);
+err_std_abs3D

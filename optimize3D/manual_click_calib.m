@@ -8,7 +8,7 @@
 %                      Zhejiang University              %
 %                                                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [gridInfo,errorExtr,paramEst3D] = new_manual_click_calib(I,kk,gen_KK_est,gridInfo,paramEst3D)
+function [gridInfo,errorExtr,paramEst3D] = manual_click_calib(I,kk,gen_KK_est,gridInfo,paramEst3D)
 
 fprintf(1,'\nProcessing image %d...\n',kk);
 

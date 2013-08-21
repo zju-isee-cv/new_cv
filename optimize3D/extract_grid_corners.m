@@ -1,15 +1,10 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                       %
-%   Extract grid corners manually                       %
-%                                                       %
-%   Created : 2012 (mod 13/07/06)                       %
-%   Author : Zhejiang Provincial Key Laboratory of      %
-%                Information Network Technology         %
-%                      Zhejiang University              %
-%                                                       %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                           %
+%      Grid extraction process manually     %
+%                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [gridInfo,paramEst, paramEst3D] = extract_grid_corners_manually(images,gen_KK_est,gridInfo,paramEst,paramEst3D)
+function [gridInfo,paramEst3D] = extract_grid_corners(images,gen_KK_est,gridInfo,paramEst3D)
 
 if isempty(gridInfo)
   % Default square size 30x30 (mm)
@@ -38,8 +33,9 @@ end
 fprintf(1,['\nExtraction of the grid corners on the images ' ...
 	   '(at each correct grid extraction, the values are '...
 	   ' save in "calib_data.mat")\n']);
-
+   
 ima_numbers = input('Number(s) of image(s) to process ([] = all images) = ');
+
 if isempty(ima_numbers),
   ima_proc = 1:n_ima;
 else
@@ -91,12 +87,15 @@ manual_squares = 1;
 
 for kk = ima_proc
   if ~isempty(images.I{kk})
-    [gridInfo,paramEst] = manual_click_ima_calib(images.I{kk},kk,...
-						    gen_KK_est,gridInfo,paramEst);
-
-    save calib_data gridInfo paramEst;
+    [gridInfo,errorExtr,paramEst3D] = manual_click_calib(images.I{kk},kk,...
+						    gen_KK_est,gridInfo,paramEst3D);
+    while errorExtr
+    [gridInfo,errorExtr,paramEst3D] = manual_click_calib(images.I{kk},kk,...
+						    gen_KK_est,gridInfo,paramEst3D);    
+    end
+    save calib_data gridInfo paramEst3D;
     images.active_images(kk) = 1;
   end
+end   
+disp('done');
 end
-
-

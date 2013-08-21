@@ -80,7 +80,6 @@ end
 if ~isfield(paramEst3D,'est_dist')
   % Estimate distortion
   paramEst3D.est_dist = [1;1;1;1;0];
-%     paramEst.est_dist = [0;0;0;0;0];
 end
 if ~isfield(paramEst3D,'est_alpha')
   % By default, do not estimate skew
@@ -94,7 +93,6 @@ end
 if ~isfield(paramEst3D,'est_aspect_ratio')
   % Aspect ratio
   paramEst3D.est_aspect_ratio = 1;
-%      paramEst.est_aspect_ratio = 0;
 end
 if ~isfield(paramEst3D,'center_optim')
   % Set this variable to 0 if your do 
